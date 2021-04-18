@@ -7,7 +7,7 @@
 ;; Description: Emacs Lisp interface for node-keytar
 ;; Keyword: keytar password credential secret security
 ;; Version: 0.1.2
-;; Package-Requires: ((emacs "24.4"))
+;; Package-Requires: ((emacs "24.4") (keytar "0.1.2"))
 ;; URL: https://github.com/emacs-grammarly/auth-source-keytar
 
 ;; This file is NOT part of GNU Emacs.
