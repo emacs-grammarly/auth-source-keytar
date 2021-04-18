@@ -20,32 +20,10 @@ or after you have installed `auth-source-keytar.el` in your `load-path`. Do the 
 
 ```el
 (require 'auth-source-keytar)
-(auth-source-keytar-install)
+(keytar-install)
 ```
 
 ## Usage
-
-List of supported API ported from [node-keytar](https://www.npmjs.com/package/keytar).
-
-* `auth-source-keytar-get-password`
-* `auth-source-keytar-set-password`
-* `auth-source-keytar-delete-password`
-* `auth-source-keytar-find-credentials`
-* `auth-source-keytar-find-password`
-
-*P.S. Checkout the [node-keytar#docs](https://github.com/atom/node-keytar#docs) for details*
-
-## Examples
-
-A small example to use this library in Emacs Lisp.
-
-```el
-(auth-source-keytar-set-password "service1" "testuser" "hello")  ; t
-(auth-source-keytar-find-credentials "service1")                 ; [ { account: 'testuser', password: 'hello' } ]
-(auth-source-keytar-find-password "service1")                    ; hello
-```
-
-If you attempt to use `auth-source` then,
 
 ```el
 (auth-source-keytar-enable)
