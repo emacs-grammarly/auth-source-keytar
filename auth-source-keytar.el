@@ -48,11 +48,11 @@
   (auth-source-forget-all-cached))
 
 (defvar auth-source-keytar-backend
-  `(auth-source-backend
-    "keytar"
-    :source "."  ; not used
-    :type 'keytar
-    :search-function #'auth-source-keytar-search)
+  (auth-source-backend
+   "keytar"
+   :source "."  ; not used
+   :type 'keytar
+   :search-function #'auth-source-keytar-search)
   "Auth-source backend for keytar.")
 
 (cl-defun auth-source-keytar-search
