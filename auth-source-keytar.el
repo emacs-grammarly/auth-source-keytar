@@ -7,7 +7,7 @@
 ;; Description: Emacs Lisp interface for node-keytar
 ;; Keyword: keytar password credential secret security
 ;; Version: 0.1.2
-;; Package-Requires: ((emacs "24.4") (keytar "0.1.2"))
+;; Package-Requires: ((emacs "24.4") (keytar "0.1.2") (s "1.12.0"))
 ;; URL: https://github.com/emacs-grammarly/auth-source-keytar
 
 ;; This file is NOT part of GNU Emacs.
@@ -35,6 +35,7 @@
 
 (require 'auth-source)
 (require 'keytar)
+(require 's)
 
 (defgroup auth-source-keytar nil
   "Keytar integration within auth-source."
@@ -62,8 +63,27 @@
 See `auth-source-search' for details on the parameters SPEC, SERVICE
 and ACCOUNT."
   (cond ((and service account) (keytar-get-password service account))
-        (service (keytar-find-credentials service))
+        (service (auth-source-keytar--build-result service account))
         (t (user-error "Missing key `service` in search query"))))
+
+(defun auth-source-keytar--read-password (secret)
+  "Read password from SECRET."
+  (let* ((lst (split-string secret "password: '"))
+         (pass (nth 1 lst)))
+    (string-trim (s-replace "' }" "" pass))))
+
+(defun auth-source-keytar--build-result (service account)
+  "Build auth-source-keytar entry matching SERVICE and ACCOUNT."
+  (let ((creds '()) (result (keytar-find-credentials service)))
+    (setq result (s-replace "[" "" result)
+          result (s-replace "]" "" result)
+          result (split-string result "\n" t))
+    (dolist (secret result)
+      (setq secret (string-trim secret)
+            secret (s-replace-regexp ",$" "" secret)
+            secret (auth-source-keytar--read-password secret))
+      (push (list :secret secret) creds))
+    creds))
 
 (defun auth-source-keytar-backend-parse (entry)
   "Create a keytar auth-source backend from ENTRY."
