@@ -49,7 +49,7 @@
 
 (defvar auth-source-keytar-backend
   (auth-source-backend
-   "keytar"
+   (when (<= emacs-major-version 25) "keytar")
    :source "."  ; not used
    :type 'keytar
    :search-function #'auth-source-keytar-search)
