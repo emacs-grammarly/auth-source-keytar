@@ -50,20 +50,23 @@
 
 (defvar auth-source-keytar-backend
   (auth-source-backend
-   (when (<= emacs-major-version 25) "keytar")
-   :source "."  ; not used
+   :source "Keytar"
    :type 'keytar
    :search-function #'auth-source-keytar-search)
   "Auth-source backend for keytar.")
 
 (cl-defun auth-source-keytar-search
-    (&rest spec &key service account &allow-other-keys)
+    (&rest spec &key service account host user &allow-other-keys)
   "Given some search query, return matching credentials.
+
+Common search keys: HOST, USER.
 
 See `auth-source-search' for details on the parameters SPEC, SERVICE
 and ACCOUNT."
   (cond ((and service account) (keytar-get-password service account))
-        (service (auth-source-keytar--build-result service account))
+        ((and host user) (keytar-get-password host user))
+        (service (auth-source-keytar--build-result service))
+        (host (auth-source-keytar--build-result host))
         (t (user-error "Missing key `service` in search query"))))
 
 (defun auth-source-keytar--read-password (secret)
@@ -72,8 +75,8 @@ and ACCOUNT."
          (pass (nth 1 lst)))
     (string-trim (s-replace "' }" "" pass))))
 
-(defun auth-source-keytar--build-result (service account)
-  "Build auth-source-keytar entry matching SERVICE and ACCOUNT."
+(defun auth-source-keytar--build-result (service)
+  "Build auth-source-keytar entry matching SERVICE."
   (let ((creds '()) (result (keytar-find-credentials service)))
     (setq result (s-replace "[" "" result)
           result (s-replace "]" "" result)
