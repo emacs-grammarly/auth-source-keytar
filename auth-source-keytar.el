@@ -48,13 +48,6 @@
   (add-to-list 'auth-sources 'keytar)
   (auth-source-forget-all-cached))
 
-(defvar auth-source-keytar-backend
-  (auth-source-backend
-   :source "Keytar"
-   :type 'keytar
-   :search-function #'auth-source-keytar-search)
-  "Auth-source backend for keytar.")
-
 (cl-defun auth-source-keytar-search
     (&rest spec &key service account host user &allow-other-keys)
   "Given some search query, return matching credentials.
@@ -91,7 +84,12 @@ and ACCOUNT."
 (defun auth-source-keytar-backend-parse (entry)
   "Create a keytar auth-source backend from ENTRY."
   (when (eq entry 'keytar)
-    (auth-source-backend-parse-parameters entry auth-source-keytar-backend)))
+    (auth-source-backend-parse-parameters
+     entry
+     (auth-source-backend
+      :source "Keytar"
+      :type 'keytar
+      :search-function #'auth-source-keytar-search))))
 
 (if (boundp 'auth-source-backend-parser-functions)
     (add-hook 'auth-source-backend-parser-functions #'auth-source-keytar-backend-parse)
