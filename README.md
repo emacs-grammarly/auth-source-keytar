@@ -2,7 +2,7 @@
 [![CELPA](https://celpa.conao3.com/packages/auth-source-keytar-badge.svg)](https://celpa.conao3.com/#/auth-source-keytar)
 [![MELPA](https://melpa.org/packages/auth-source-keytar-badge.svg)](https://melpa.org/#/auth-source-keytar)
 [![MELPA Stable](https://stable.melpa.org/packages/auth-source-keytar-badge.svg)](https://stable.melpa.org/#/auth-source-keytar)
-[![Build Status](https://travis-ci.com/emacs-grammarly/auth-source-keytar.svg?branch=master)](https://travis-ci.com/emacs-grammarly/auth-source-keytar)
+[![CI](https://github.com/emacs-grammarly/auth-source-keytar/actions/workflows/test.yml/badge.svg)](https://github.com/emacs-grammarly/auth-source-keytar/actions/workflows/test.yml)
 
 # auth-source-keytar
 
