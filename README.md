@@ -1,5 +1,4 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![CELPA](https://celpa.conao3.com/packages/auth-source-keytar-badge.svg)](https://celpa.conao3.com/#/auth-source-keytar)
 [![MELPA](https://melpa.org/packages/auth-source-keytar-badge.svg)](https://melpa.org/#/auth-source-keytar)
 [![MELPA Stable](https://stable.melpa.org/packages/auth-source-keytar-badge.svg)](https://stable.melpa.org/#/auth-source-keytar)
 
