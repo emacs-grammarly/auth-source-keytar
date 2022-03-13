@@ -12,8 +12,7 @@ TEST-FILES := $(shell ls test/auth-source-keytar-*.el)
 ci: clean build compile
 
 build:
-	EMACS=$(EMACS) $(CASK) install
-	EMACS=$(EMACS) $(CASK) build
+	$(CASK) install
 
 compile:
 	@echo "Compiling..."
