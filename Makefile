@@ -9,6 +9,10 @@ TEST-FILES := $(shell ls test/auth-source-keytar-*.el)
 
 ci: clean install compile
 
+clean:
+	@echo "Cleaning..."
+	$(EASK) clean-all
+
 install:
 	@echo "Installing..."
 	$(EASK) install
@@ -24,6 +28,3 @@ lint:
 unix-test:
 	@echo "Testing..."
 	$(EASK) exec ert-runner -L . $(LOAD-TEST-FILES) -t '!no-win' -t '!org'
-
-clean:
-	rm -rf .cask *.elc
