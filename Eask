@@ -3,7 +3,7 @@
          "Integrate auth-source with keytar")
 
 (website-url "https://github.com/emacs-grammarly/auth-source-keytar")
-(keywords "keytar" "password" "credential" "secret" "security")
+(keywords "convenience" "keytar" "password" "credential" "secret" "security")
 
 (package-file "auth-source-keytar.el")
 
