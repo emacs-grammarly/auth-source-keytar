@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "auth-source-keytar"
          "0.1.3"
          "Integrate auth-source with keytar")
